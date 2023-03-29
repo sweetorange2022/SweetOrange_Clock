@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日期时间与倒计时</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+        }
+        .date {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+        .time {
+            font-size: 96px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .countdown {
+            font-size: 42px;
+        }
+    </style>
+    <script>
+
+    function launchIntoFullscreen(element) {
+      if (element.requestFullscreen) {
+        element.requestFullscreen();
+      } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+      } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+      } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+      }
+    }
+        function updateDateTime() {
+            const days = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+            let now = new Date();
+            let date = now.getFullYear() + '年' + (now.getMonth() + 1) + '月' + now.getDate() + '日';
+            let day = days[now.getDay()];
+            document.getElementById("date").innerText = date + ' ' + day;
+            let time = now.getHours().toString().padStart(2, "0") + ':' +
+                now.getMinutes().toString().padStart(2, "0") + ':' +
+                now.getSeconds().toString().padStart(2, "0");
+            document.getElementById("time").innerText = time;
+        }
+
+function updateCountdown() {
+    let now = new Date();
+    let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    let dayOfWeek = today.getDay();
+
+    if (dayOfWeek === 0 || dayOfWeek === 6) {
+        document.getElementById("countdown").innerText = '周末愉快！';
+    } else {
+        let daysUntilWeekend = (7 - dayOfWeek) % 7 - 2;
+        document.getElementById("countdown").innerText = '距离最近的周末还有' + daysUntilWeekend + '天';
+    }
+}
+
+
+
+
+        function update() {
+            updateDateTime();
+            updateCountdown();
+        }
+
+        setInterval(update, 1000);
+    </script>
+</head>
+<body onload="update()">
+    <div class="date" id="date"></div>
+    <div class="time" id="time"></div>
+    <div class="countdown" id="countdown"></div>
+</body>
+</html>
