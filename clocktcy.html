@@ -14,6 +14,7 @@
             flex-direction: column;
             justify-content: center;
             height: 100vh;
+overflow: hidden;
         }
         .date {
             font-size: 42px;
@@ -29,18 +30,6 @@
         }
     </style>
     <script>
-
-    function launchIntoFullscreen(element) {
-      if (element.requestFullscreen) {
-        element.requestFullscreen();
-      } else if (element.mozRequestFullScreen) {
-        element.mozRequestFullScreen();
-      } else if (element.webkitRequestFullscreen) {
-        element.webkitRequestFullscreen();
-      } else if (element.msRequestFullscreen) {
-        element.msRequestFullscreen();
-      }
-    }
         function updateDateTime() {
             const days = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
             let now = new Date();
@@ -66,20 +55,36 @@ function updateCountdown() {
     }
 }
 
-
-
-
         function update() {
             updateDateTime();
             updateCountdown();
         }
 
         setInterval(update, 1000);
+ function updateFullscreenMessage() {
+            const isFullscreen = window.matchMedia('(display-mode: fullscreen)').matches;
+            const fullscreenMessage = document.getElementById("fullscreen-message");
+            if (isFullscreen) {
+                fullscreenMessage.style.display = "none";
+            } else {
+                fullscreenMessage.style.display = "block";
+            }
+        }
+
+        // 检测全屏状态变化
+        window.addEventListener("resize", updateFullscreenMessage);
+
+        // 页面加载时执行一次
+        document.addEventListener("DOMContentLoaded", updateFullscreenMessage);
     </script>
 </head>
 <body onload="update()">
     <div class="date" id="date"></div>
     <div class="time" id="time"></div>
     <div class="countdown" id="countdown"></div>
+<p id="fullscreen-message">要进入全屏模式，请按F11键。</p>
 </body>
+
+
+
 </html>
