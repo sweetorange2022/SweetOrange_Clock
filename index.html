@@ -5,59 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>日期时间与倒计时</title>
     <style>
-     body {
-    background-color: black;
-    color: white;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100vh;
-    overflow: hidden;
-}
-.date {
-    font-size: 42px;
-    margin-bottom: 10px;
-    white-space: nowrap;
-}
-.time {
-    font-size: 130px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-.countdown {
-    font-size: 42px;
-    white-space: nowrap;
-}
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .date {
+            font-size: 42px;
+            margin-bottom: 10px;
+            white-space: nowrap;
+        }
+
+        .time {
+            font-size: 96px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .countdown {
+            font-size: 42px;
+            white-space: nowrap;
+        }
+
         .button-container {
             align-self: center;
         }
-.fullscreen-button {
-    display: inline-block;
-    width: auto;
-    background-color: black;
-    color: white;
-    padding: 10px 20px;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    border-radius: 5px;
-    font-size: 16px;
-    margin: 50px 0;
-}
-.fullscreen-button.hide {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
 
-.fullscreen-button:hover {
-    opacity: 1;
-}
+        .fullscreen-button {
+            display: inline-block;
+            width: auto;
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            font-size: 16px;
+            margin: 50px 0;
+        }
 
-}
+        .fullscreen-button.hide {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
 
+        .fullscreen-button:hover {
+            opacity: 1;
+        }
 
-
-</style>
+        * {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+    </style>
 <script>
     function updateDateTime() {
         const days = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
@@ -130,7 +138,7 @@ button.classList.remove("hide");
 setInterval(update, 1000);
 </script>
 </head>
-<body onload="update()">
+<body onload="update()" contenteditable="false">
     <div class="date" id="date"></div>
     <div class="time" id="time"></div>
     <div class="countdown" id="countdown"></div>
