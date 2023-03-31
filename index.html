@@ -5,86 +5,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>日期时间与倒计时</title>
     <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            height: 100vh;
-overflow: hidden;
+     body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+.date {
+    font-size: 42px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+}
+.time {
+    font-size: 130px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.countdown {
+    font-size: 42px;
+    white-space: nowrap;
+}
+        .button-container {
+            align-self: center;
         }
-        .date {
-            font-size: 42px;
-            margin-bottom: 10px;
-        }
-        .time {
-            font-size: 96px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .countdown {
-            font-size: 42px;
-        }
-    </style>
-    <script>
-        function updateDateTime() {
-            const days = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
-            let now = new Date();
-            let date = now.getFullYear() + '年' + (now.getMonth() + 1) + '月' + now.getDate() + '日';
-            let day = days[now.getDay()];
-            document.getElementById("date").innerText = date + ' ' + day;
-            let time = now.getHours().toString().padStart(2, "0") + ':' +
-                now.getMinutes().toString().padStart(2, "0") + ':' +
-                now.getSeconds().toString().padStart(2, "0");
-            document.getElementById("time").innerText = time;
-        }
+.fullscreen-button {
+    display: inline-block;
+    width: auto;
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 50px 0;
+}
+.fullscreen-button.hide {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
 
-function updateCountdown() {
-    let now = new Date();
-    let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    let dayOfWeek = today.getDay();
+.fullscreen-button:hover {
+    opacity: 1;
+}
 
-    if (dayOfWeek === 0 || dayOfWeek === 6) {
-        document.getElementById("countdown").innerText = '周末愉快！';
-    } else {
-        let daysUntilWeekend = (7 - dayOfWeek) % 7 - 2;
-        document.getElementById("countdown").innerText = '距离最近的周末还有' + daysUntilWeekend + '天';
+}
+
+
+
+</style>
+<script>
+    function updateDateTime() {
+        const days = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+        let now = new Date();
+        let date = now.getFullYear() + '年' + (now.getMonth() + 1) + '月' + now.getDate() + '日';
+        let day = days[now.getDay()];
+        document.getElementById("date").innerText = date + ' ' + day;
+        let time = now.getHours().toString().padStart(2, "0") + ':' +
+            now.getMinutes().toString().padStart(2, "0") + ':' +
+            now.getSeconds().toString().padStart(2, "0");
+        document.getElementById("time").innerText = time;
+    }
+
+    function updateCountdown() {
+        let now = new Date();
+        let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        let dayOfWeek = today.getDay();
+
+        if (dayOfWeek === 0 || dayOfWeek === 6) {
+            document.getElementById("countdown").innerText = '周末愉快！';
+        } else if (dayOfWeek === 5) {
+            document.getElementById("countdown").innerText = '我说个事:明天，周末！';
+        } else {
+            let daysUntilWeekend        = (6 - dayOfWeek + 7) % 7;
+        document.getElementById("countdown").innerText = '距离周末还有' + daysUntilWeekend + '天';
     }
 }
 
-        function update() {
-            updateDateTime();
-            updateCountdown();
+function update() {
+    updateDateTime();
+    updateCountdown();
+}
+
+function toggleFullScreen() {
+    let element = document.documentElement;
+    let button = document.getElementById("fullscreen-button");
+
+    if (!document.fullscreenElement && !document.mozFullScreenElement &&
+        !document.webkitFullscreenElement && !document.msFullscreenElement) {
+        // 进入全屏
+        if (element.requestFullscreen) {
+            element.requestFullscreen();
+        } else if (element.mozRequestFullScreen) {
+            element.mozRequestFullScreen();
+        } else if (element.webkitRequestFullscreen) {
+            element.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+        } else if (element.msRequestFullscreen) {
+            element.msRequestFullscreen();
         }
+        button.innerText = "退出全屏";
+button.classList.add("hide");
 
-        setInterval(update, 1000);
- function updateFullscreenMessage() {
-            const isFullscreen = window.matchMedia('(display-mode: fullscreen)').matches;
-            const fullscreenMessage = document.getElementById("fullscreen-message");
-            if (isFullscreen) {
-                fullscreenMessage.style.display = "none";
-            } else {
-                fullscreenMessage.style.display = "block";
-            }
+    } else {
+        // 退出全屏
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
         }
+        button.innerText = "全屏";
+button.classList.remove("hide");
 
-        // 检测全屏状态变化
-        window.addEventListener("resize", updateFullscreenMessage);
+    }
+}
 
-        // 页面加载时执行一次
-        document.addEventListener("DOMContentLoaded", updateFullscreenMessage);
-    </script>
+setInterval(update, 1000);
+</script>
 </head>
 <body onload="update()">
     <div class="date" id="date"></div>
     <div class="time" id="time"></div>
     <div class="countdown" id="countdown"></div>
-<p id="fullscreen-message">要进入全屏模式，请按F11键。</p>
+    <div class="button-container">
+        <button class="fullscreen-button" id="fullscreen-button" onclick="toggleFullScreen()">全屏</button>
+    </div>
 </body>
-
-
-
 </html>
+
