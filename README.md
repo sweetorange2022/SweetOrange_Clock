@@ -26,7 +26,12 @@ SweetOrange_Clock
 
 
   
-  
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
   
   
   
@@ -35,7 +40,7 @@ English Version：
 SweetOrange_Clock 
 ===  
 
-:computer:weekend_countdown:clock9.
+:computer:weekend_countdown:clock9：
 ---
 
 I. Introduction:  
@@ -47,7 +52,7 @@ I. Introduction:
 
 II. Usage:  
 ---
-Accessed by :computer: end browser (:iphone: end may have layout problems): https://sweetorange2022.github.io/SweetOrange_Clock/  
+Accessed by :computer: end browser (:iphone: may have layout problems): https://sweetorange2022.github.io/SweetOrange_Clock/  
 1、Click the "Full Screen" button at the bottom of the page, the page will enter full-screen mode.  
 2、In full-screen mode, you can continue to view the current date, time and countdown. The button is still in the same position, but **the button will be hidden when the mouse does not pass over the button in full screen** to enhance the sense of view.  
 3、To exit full screen mode, please press Esc key or click the button again.  
