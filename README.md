@@ -1,5 +1,6 @@
-#SweetOrange_Clock
-##:computer:周末倒计时:clock1030:
+#SweetOrange_Clock 
+
+##:computer:周末倒计时:clock1030:  
 
 ###一、简介：  
 1、这个项目包括一个HTML文件，其中包含页面的样式和脚本。  
@@ -8,7 +9,7 @@
 4、包含一个全屏按钮，以便在全屏模式下查看。 
 
 ###二、使用方法：  
-:computer:端浏览器访问（:phone:端可能有布局问题）：  https://sweetorange2022.github.io/SweetOrange_Clock/  
+:computer:端浏览器访问（:iphone:端可能有布局问题）：  https://sweetorange2022.github.io/SweetOrange_Clock/  
 1、点击页面底部的“全屏”按钮，页面将进入全屏模式。  
 2、在全屏模式下，您可以继续查看当前的日期、时间和倒计时。按钮还在同一位置，但是**全屏下鼠标未经过按钮时候按钮会隐藏**，提升观感。  
 3、要退出全屏模式，请按Esc键或再次点击按钮。  
