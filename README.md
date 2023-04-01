@@ -25,6 +25,11 @@ SweetOrange_Clock
 最后，欢迎:computer:端访问： https://sweetorange2022.github.io/SweetOrange_Clock/
 
 
+  
+  
+  
+  
+  
 English Version：
 ===
 SweetOrange_Clock 
@@ -52,9 +57,4 @@ III. Contribution:
 If you have any suggestions or want to add new features, please feel free to create an issue or submit a pull request.**Fork is welcome but private commercialization is prohibited! **  
 
 Finally, welcome to the :computer: side of the site: https://sweetorange2022.github.io/SweetOrange_Clock/
-
-
-
-
-Translated with www.DeepL.com/Translator (free version)
 
