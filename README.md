@@ -1,7 +1,7 @@
 SweetOrange_Clock 
 ===  
 
-:computer:周末倒计时:clock1010: 
+:computer:周末倒计时:clock9:
 ---
 
 一、简介：  
@@ -25,4 +25,36 @@ SweetOrange_Clock
 最后，欢迎:computer:端访问： https://sweetorange2022.github.io/SweetOrange_Clock/
 
 
+English Version：
+===
+SweetOrange_Clock 
+===  
+
+:computer:weekend_countdown:clock9.
+---
+
+I. Introduction:  
+---
+1、This project includes an HTML file which contains the page styles and scripts.  
+2、The page is in an elegant black and white color scheme, highlighting the practicality and visual impact, making the display content more visually prominent and easy to read.  
+3、This is a date and time with countdown display. By displaying the current date, time and **beating workers essential countdown days to the weekend** provides the ability to view real-time date and time information on the web.
+4. Includes a full screen button to view in full screen mode. 
+
+II. Usage:  
+---
+Accessed by :computer: end browser (:iphone: end may have layout problems): https://sweetorange2022.github.io/SweetOrange_Clock/  
+1、Click the "Full Screen" button at the bottom of the page, the page will enter full-screen mode.  
+2、In full-screen mode, you can continue to view the current date, time and countdown. The button is still in the same position, but **the button will be hidden when the mouse does not pass over the button in full screen** to enhance the sense of view.  
+3、To exit full screen mode, please press Esc key or click the button again.  
+
+III. Contribution:  
+---
+If you have any suggestions or want to add new features, please feel free to create an issue or submit a pull request.**Fork is welcome but private commercialization is prohibited! **  
+
+Finally, welcome to the :computer: side of the site: https://sweetorange2022.github.io/SweetOrange_Clock/
+
+
+
+
+Translated with www.DeepL.com/Translator (free version)
 
