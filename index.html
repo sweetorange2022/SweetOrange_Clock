@@ -116,8 +116,7 @@ function toggleFullScreen() {
             element.msRequestFullscreen();
         }
         button.innerText = "退出全屏";
-button.classList.add("hide");
-
+        button.classList.add("hide");
     } else {
         // 退出全屏
         if (document.exitFullscreen) {
@@ -130,14 +129,15 @@ button.classList.add("hide");
             document.msExitFullscreen();
         }
         button.innerText = "全屏";
-button.classList.remove("hide");
-
+        button.classList.remove("hide");
     }
 }
+    setInterval(update, 1000);
 
-setInterval(update, 1000);
 </script>
 </head>
+
+
 <body onload="update()" contenteditable="false">
     <div class="date" id="date"></div>
     <div class="time" id="time"></div>
