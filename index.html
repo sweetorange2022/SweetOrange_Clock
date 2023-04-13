@@ -1,3 +1,4 @@
+我希望修改代码让我的鼠标点击的时候发出绿色的粒子特效，我应该怎么修改
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -65,6 +66,35 @@
             -moz-user-select: none;
             -ms-user-select: none;
         }
+.particle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  border-radius: 50%;
+  z-index: 1000;
+  pointer-events: none;
+  animation-name: shooting-star;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+@keyframes shooting-star {
+  from {
+    transform: translate(-100%, -100%);
+  }
+  to {
+    transform: translate(200%, 200%);
+    opacity: 0;
+  }
+}
+
+
+
+
+
+
+
     </style>
 <script>
     function updateDateTime() {
@@ -132,7 +162,59 @@ function toggleFullScreen() {
         button.classList.remove("hide");
     }
 }
-    setInterval(update, 1000);
+let particles = [];
+
+function addParticle(x, y) {
+  let particle = document.createElement("div");
+  particle.className = "particle";
+  particle.style.left = x + "px";
+  particle.style.top = y + "px";
+  particles.push(particle);
+  document.body.appendChild(particle);
+}
+
+function updateParticles(event) {
+  let x = event.clientX;
+  let y = event.clientY;
+
+  for (let i = 0; i < particles.length; i++) {
+    let particle = particles[i];
+    let dx = particle.offsetLeft + 5 - x;
+    let dy = particle.offsetTop + 5 - y;
+    let distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance > 500) {
+      particle.remove();
+      particles.splice(i, 1);
+      i--;
+    } else {
+      particle.style.left = particle.offsetLeft - dx / 10 + "px";
+      particle.style.top = particle.offsetTop - dy / 10 + "px";
+    }
+  }
+}
+
+let mouseStoppedTimer;
+
+document.addEventListener("mousemove", function(event) {
+  addParticle(event.clientX, event.clientY);
+
+  if (mouseStoppedTimer) {
+    clearTimeout(mouseStoppedTimer);
+  }
+
+  mouseStoppedTimer = setTimeout(function() {
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].remove();
+    }
+    particles = [];
+  }, 500);
+});
+
+document.addEventListener("click", function(event) {
+  addParticle(event.clientX, event.clientY);
+});
+
 
 </script>
 </head>
@@ -145,6 +227,7 @@ function toggleFullScreen() {
     <div class="button-container">
         <button class="fullscreen-button" id="fullscreen-button" onclick="toggleFullScreen()">全屏</button>
     </div>
+<body onclick="addParticle(event.clientX, event.clientY)">
+
 </body>
 </html>
-
