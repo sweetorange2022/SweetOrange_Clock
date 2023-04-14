@@ -65,36 +65,30 @@
             -moz-user-select: none;
             -ms-user-select: none;
         }
-.particle {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background-color: #fff;
-  border-radius: 50%;
-  z-index: 1000;
-  pointer-events: none;
-  animation-name: shooting-star;
-  animation-duration: 1s;
-  animation-timing-function: ease-out;
-  animation-fill-mode: forwards;
-}
-@keyframes shooting-star {
-  from {
-    transform: translate(-100%, -100%);
-  }
-  to {
-    transform: translate(200%, 200%);
-    opacity: 0;
-  }
-}
-
-
-
-
-
-
-
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            border-radius: 50%;
+            z-index: 1000;
+            pointer-events: none;
+            animation-name: shooting-star;
+            animation-duration: 1s;
+            animation-timing-function: ease-out;
+            animation-fill-mode: forwards;
+        }
+        @keyframes shooting-star {
+            from {
+                transform: translate(-100%, -100%);
+            }
+            to {
+                transform: translate(200%, 200%);
+                opacity: 0;
+            }
+        }
     </style>
+
 <script>
     function updateDateTime() {
         const days = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
@@ -118,15 +112,15 @@
         } else if (dayOfWeek === 5) {
             document.getElementById("countdown").innerText = '我说个事:明天，周末！';
         } else {
-            let daysUntilWeekend        = (6 - dayOfWeek + 7) % 7;
-        document.getElementById("countdown").innerText = '距离周末还有' + (daysUntilWeekend - 1) + '天';
+            let daysUntilWeekend = (6 - dayOfWeek + 7) % 7;
+            document.getElementById("countdown").innerText = '距离周末还有' + (daysUntilWeekend - 1) + '天';
+        }
     }
-}
 
-function update() {
-    updateDateTime();
-    updateCountdown();
-}
+    function update() {
+        updateDateTime();
+        updateCountdown();
+    }
 
 function toggleFullScreen() {
     let element = document.documentElement;
@@ -214,7 +208,7 @@ document.addEventListener("click", function(event) {
   addParticle(event.clientX, event.clientY);
 });
 
-
+setInterval(update, 1000);
 </script>
 </head>
 
