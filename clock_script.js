@@ -59,7 +59,7 @@ function toggleFullScreen() {
         } else if (document.msExitFullscreen) {
             document.msExitFullscreen();
         }
-        button.innerText = "全 屏";
+        button.innerText = "全屏";
         button.classList.remove("hide");
     }
 }
@@ -117,7 +117,7 @@ document.addEventListener("click", function(event) {
 });
 function updateTitle() {
     var now = new Date();
-    var date = now.getFullYear() + '年' + (now.getMonth() + 1) + '月' + now.getDate()+ '日 ';
+    var date = now.getFullYear() + '年 ' + (now.getMonth() + 1) + '月' + now.getDate()+ '日 ';
     var time = now.getHours().toString().padStart(2, "0") + ':' +
     now.getMinutes().toString().padStart(2, "0") + ':' +
     now.getSeconds().toString().padStart(2, "0");
