@@ -1,0 +1,86 @@
+
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.date {
+    font-size: 42px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+}
+
+.time {
+    font-size: 96px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.countdown {
+    font-size: 42px;
+    white-space: nowrap;
+}
+
+.button-container {
+    align-self: center;
+}
+
+.fullscreen-button {
+    display: inline-block;
+    width: auto;
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 50px 0;
+}
+
+.fullscreen-button.hide {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.fullscreen-button:hover {
+    opacity: 1;
+}
+
+* {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+.particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    z-index: 1000;
+    pointer-events: none;
+    animation-name: shooting-star;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+@keyframes shooting-star {
+    from {
+        transform: translate(-100%, -100%);
+    }
+    to {
+        transform: translate(200%, 200%);
+        opacity: 0;
+    }
+}
+
+
+
