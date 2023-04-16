@@ -59,7 +59,7 @@ function toggleFullScreen() {
         } else if (document.msExitFullscreen) {
             document.msExitFullscreen();
         }
-        button.innerText = "全屏";
+        button.innerText = "全 屏";
         button.classList.remove("hide");
     }
 }
