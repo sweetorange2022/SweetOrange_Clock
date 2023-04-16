@@ -1,7 +1,7 @@
 function updateDateTime() {
     const days = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
     let now = new Date();
-    let date = now.getFullYear() + '年' + (now.getMonth() + 1) + '月' + now.getDate() + '日';
+    let date = now.getFullYear() + '年 ' + (now.getMonth() + 1) + '月' + now.getDate() + '日';
     let day = days[now.getDay()];
     document.getElementById("date").innerText = date + ' ' + day;
     let time = now.getHours().toString().padStart(2, "0") + ':' +
@@ -118,7 +118,9 @@ document.addEventListener("click", function(event) {
 function updateTitle() {
     var now = new Date();
     var date = now.getFullYear() + '年' + (now.getMonth() + 1) + '月' + now.getDate()+ '日 ';
-    var time = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+    var time = now.getHours().toString().padStart(2, "0") + ':' +
+    now.getMinutes().toString().padStart(2, "0") + ':' +
+    now.getSeconds().toString().padStart(2, "0");
     document.title = date + ' ' + time;
   }
   setInterval(updateTitle, 1000); // 每秒钟更新标题
