@@ -3,215 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>日期时间与倒计时</title>
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .date {
-            font-size: 42px;
-            margin-bottom: 10px;
-            white-space: nowrap;
-        }
-
-        .time {
-            font-size: 96px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .countdown {
-            font-size: 42px;
-            white-space: nowrap;
-        }
-
-        .button-container {
-            align-self: center;
-        }
-
-        .fullscreen-button {
-            display: inline-block;
-            width: auto;
-            background-color: black;
-            color: white;
-            padding: 10px 20px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 5px;
-            font-size: 16px;
-            margin: 50px 0;
-        }
-
-        .fullscreen-button.hide {
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .fullscreen-button:hover {
-            opacity: 1;
-        }
-
-        * {
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-        }
-        .particle {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #fff;
-            border-radius: 50%;
-            z-index: 1000;
-            pointer-events: none;
-            animation-name: shooting-star;
-            animation-duration: 1s;
-            animation-timing-function: ease-out;
-            animation-fill-mode: forwards;
-        }
-        @keyframes shooting-star {
-            from {
-                transform: translate(-100%, -100%);
-            }
-            to {
-                transform: translate(200%, 200%);
-                opacity: 0;
-            }
-        }
-    </style>
-
-<script>
-    function updateDateTime() {
-        const days = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
-        let now = new Date();
-        let date = now.getFullYear() + '年' + (now.getMonth() + 1) + '月' + now.getDate() + '日';
-        let day = days[now.getDay()];
-        document.getElementById("date").innerText = date + ' ' + day;
-        let time = now.getHours().toString().padStart(2, "0") + ':' +
-            now.getMinutes().toString().padStart(2, "0") + ':' +
-            now.getSeconds().toString().padStart(2, "0");
-        document.getElementById("time").innerText = time;
-    }
-
-    function updateCountdown() {
-        let now = new Date();
-        let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-        let dayOfWeek = today.getDay();
-
-        if (dayOfWeek === 0 || dayOfWeek === 6) {
-            document.getElementById("countdown").innerText = '周末愉快！';
-        } else if (dayOfWeek === 5) {
-            document.getElementById("countdown").innerText = '我说个事:明天，周末！';
-        } else {
-            let daysUntilWeekend = (6 - dayOfWeek + 7) % 7;
-            document.getElementById("countdown").innerText = '距离周末还有' + (daysUntilWeekend - 1) + '天';
-        }
-    }
-
-    function update() {
-        updateDateTime();
-        updateCountdown();
-    }
-
-function toggleFullScreen() {
-    let element = document.documentElement;
-    let button = document.getElementById("fullscreen-button");
-
-    if (!document.fullscreenElement && !document.mozFullScreenElement &&
-        !document.webkitFullscreenElement && !document.msFullscreenElement) {
-        // 进入全屏
-        if (element.requestFullscreen) {
-            element.requestFullscreen();
-        } else if (element.mozRequestFullScreen) {
-            element.mozRequestFullScreen();
-        } else if (element.webkitRequestFullscreen) {
-            element.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-        } else if (element.msRequestFullscreen) {
-            element.msRequestFullscreen();
-        }
-        button.innerText = "退出全屏";
-        button.classList.add("hide");
-    } else {
-        // 退出全屏
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
-        } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) {
-            document.msExitFullscreen();
-        }
-        button.innerText = "全屏";
-        button.classList.remove("hide");
-    }
-}
-let particles = [];
-
-function addParticle(x, y) {
-  let particle = document.createElement("div");
-  particle.className = "particle";
-  particle.style.left = x + "px";
-  particle.style.top = y + "px";
-  particles.push(particle);
-  document.body.appendChild(particle);
-}
-
-function updateParticles(event) {
-  let x = event.clientX;
-  let y = event.clientY;
-
-  for (let i = 0; i < particles.length; i++) {
-    let particle = particles[i];
-    let dx = particle.offsetLeft + 5 - x;
-    let dy = particle.offsetTop + 5 - y;
-    let distance = Math.sqrt(dx * dx + dy * dy);
-
-    if (distance > 500) {
-      particle.remove();
-      particles.splice(i, 1);
-      i--;
-    } else {
-      particle.style.left = particle.offsetLeft - dx / 10 + "px";
-      particle.style.top = particle.offsetTop - dy / 10 + "px";
-    }
-  }
-}
-
-let mouseStoppedTimer;
-
-document.addEventListener("mousemove", function(event) {
-  addParticle(event.clientX, event.clientY);
-
-  if (mouseStoppedTimer) {
-    clearTimeout(mouseStoppedTimer);
-  }
-
-  mouseStoppedTimer = setTimeout(function() {
-    for (let i = 0; i < particles.length; i++) {
-      particles[i].remove();
-    }
-    particles = [];
-  }, 500);
-});
-
-document.addEventListener("click", function(event) {
-  addParticle(event.clientX, event.clientY);
-});
-
-setInterval(update, 1000);
-</script>
+    <title>当前实时时间</title>
+    <link rel="stylesheet" href="clock_css.css">
+    <link rel="icon" href="calendar.png" type="image/png">
 </head>
-
 
 <body onload="update()" contenteditable="false">
     <div class="date" id="date"></div>
@@ -220,7 +15,12 @@ setInterval(update, 1000);
     <div class="button-container">
         <button class="fullscreen-button" id="fullscreen-button" onclick="toggleFullScreen()">全屏</button>
     </div>
-<body onclick="addParticle(event.clientX, event.clientY)">
-
+    <body onclick="addParticle(event.clientX, event.clientY)">
+    <script src="clock_script.js"></script>
 </body>
 </html>
+
+
+
+
+
